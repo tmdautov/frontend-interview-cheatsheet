@@ -1,7 +1,7 @@
 # Frontend Interview Cheatsheet
 
 - [**JS theory**](#js-theory)
-  * [What are the data types in JavaScript?t?](#describe-the-data-types-available-in-javascript)
+  * [What are the data types in JavaScript?t?](#what-are-the-data-types-in-javascript)
   * [What is the Hoisting?](#what-is-the-hoisting)
   * [What is the Closure?](#what-is-the-closure)
 
@@ -52,19 +52,27 @@ let b = 3;
 
 ### What is the Closure?
 
->  Closure is a function that has access to its own scope, the scope of the outer function and the global scope.
+- Closure is a function that has access to its own scope, the scope of the outer function, and the global scope.
 
 - Closures can be used to emulate private properties and methods.
-- Lexical scope
-  - Global scope refers to the context in which variables and functions are accessible from any part of the code.
-  - Block scope was introduced with ES6 with `let` and `const`. Previously Javascript only had Global and Function Scope. Variables declared inside block scope can not be accessed from outside of the block.
-  - Every function create his own scope. Variable declared inside a function can only be accessible within that function and cannot be used outside that function.
+- Every JavaScript function creates a new `lexical environment`. This environment has a reference to its outer environment, forming a scope chain
+- The scope chain is a process of how Javascript looks for variables. When code needs to access a variable, JavaScript looks at the current scope. If not found, it moves up the scope chain to the outer scope and continues until it reaches the global scope. If the variable is still not found, a reference error is thrown.
 
+**Example: Counter**
 
+```js
+function getCounter() {
+  let counter = 0;
+  return function() {
+    return counter++;
+  }
+}
+
+let count = getCounter();
+console.log(count());  // 0
+console.log(count());  // 1
+console.log(count());  // 2
 ```
-```
-
-
 
 
 
