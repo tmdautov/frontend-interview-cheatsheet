@@ -69,10 +69,49 @@ function getCounter() {
 }
 
 let count = getCounter();
-console.log(count());  // 0
-console.log(count());  // 1
-console.log(count());  // 2
+console.log(count()); // 0
+console.log(count()); // 1
+console.log(count()); // 2
 ```
+
+### What is Event Loop?
+
+The event loop is a single-threaded loop that monitors the call stack and the callback queue. If the call stack is empty, the event loop will take the first event from the queue and will push it to the call stack.
+
+This event loop mechanism allows JavaScript to perform non-blocking I/O operations despite the fact that JavaScript is single-threaded.
+
+Event loop has the following building blocks:
+
+- `Call Stack`. The Call Stack is a data structure in Javascript used to keep track of the function calls in a program. Call Stack follows LIFO principle, which means that the last function that gets pushed onto the stack is the first to be popped off when its execution completes.
+- `Callback Queue`. Callback queue is where callbacks from asynchronous operations are placed once they are ready to be executed.
+- `Memory Heap`. This is where memory allocation happens in JavaScript. When you create variables and objects in your JavaScript code, they are stored in the memory heap. This area of memory is not structured and is used for the dynamic allocation, meaning that variables and objects can be allocated and deallocated in any order.
+- `Web API`. The Web APIs are provided by the web browser that gives additional functionality to the V8 engine. The Web API calls are added to the Web API Container from the Call Stack. These Web API calls remain inside the Web API Container until an action is triggered. 
+
+This is simplified version of Event Loop implementation:
+
+```js
+while (true) {
+  if (!isCallStackEmpty) {
+    continue;
+  }
+
+  for (const task of eventLoop.microtasks) {
+    task.execute();
+  }
+  eventLoop.microtasks = [];
+
+  const task = eventLoop.nextMacrotask();
+  if (task) {
+    task.execute();
+  }
+
+  if (eventLoop.needRender()) {
+    eventLoop.render();
+  }
+}
+```
+
+
 
 
 
