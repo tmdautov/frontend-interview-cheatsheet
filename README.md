@@ -5,7 +5,7 @@
   * [What is the Hoisting?](#what-is-the-hoisting)
   * [What is the Closure?](#what-is-the-closure)
   * [What is the Event Loop?](#what-is-the-event-loop)
-  * [What happens when you type URL in browser](#)
+  * [What happens when you type URL in browser](#what-happens-when-you-type-url-in-a-browser)
 
 
 
