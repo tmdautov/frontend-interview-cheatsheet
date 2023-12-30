@@ -1,5 +1,7 @@
 # Frontend Interview Cheatsheet
 
+> Frontend Interview Survival Cheatsheet
+
 - [**JS theory**](#js-theory)
   * [What are the data types in JavaScript?](#what-are-the-data-types-in-javascript)
   * [What is the Hoisting?](#what-is-the-hoisting)
@@ -113,8 +115,6 @@ while (true) {
 }
 ```
 
-
-
 ### What happens when you type URL in a Browser
 
 There are 6 general steps in this process:
@@ -124,13 +124,19 @@ There are 6 general steps in this process:
    - `DNS lookup in Cache`. The browser uses DNS lookup to get the IP address for the domain. Cached data at different levels makes the process faster.
 
    - `Recursive DNS lookup in Server` If the IP address cannot be found at any of the caches, the browser goes to DNS servers to do a recursive DNS lookup until the IP address is found
-
 2. `TCP handshake.` The browser establishes a TCP connection with the Server.
-
 3. `TLS Negotiation`. Determines which cipher will be used to encrypt the communication, verifies the Server, and establishes that a secure connection is in place before beginning the actual transfer of data
-
 4. `Request to the Server`. The Client sends an HTTP request to the Server.
-
 5. `Server response to the Client`. The Server processes the request and sends back the response for a successful response (the status code is 200).
-
 6. `Rendering webpage`. The browser renders the HTML content.
+
+### How does a browser render a webpage?
+
+There are 6 general steps in this process:
+
+1. `Construct DOM tree`: a tree of nodes corresponding to `HTML` elements
+2. `Construct CSSOM tree`: a tree of nodes corresponding to `CSS` selectors
+3. `Construct Render tree`: The browser traverses the DOM tree and matches every element with the appropriate style from the `CSSOM` tree.
+4. `Layout phase`. geometry phase where browsers calculate the position of every element
+5. `Painting phase`. The browser uses a render tree to paint or display pixels currently within your viewport
+6. `Repainting phase`: if we change the DOM tree, the browser must repaint the affected regions
