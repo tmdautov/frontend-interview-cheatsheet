@@ -7,7 +7,8 @@
   * [What is the Hoisting?](#what-is-the-hoisting)
   * [What is the Closure?](#what-is-the-closure)
   * [What is the Event Loop?](#what-is-the-event-loop)
-  * [What happens when you type URL in browser](#what-happens-when-you-type-url-in-a-browser)
+  * [What happens when you type URL in browser?](#what-happens-when-you-type-url-in-a-browser)
+  * [How does a browser render a webpage?](#how-does-a-browser-render-a-webpage)
 
 
 
@@ -140,3 +141,18 @@ There are 6 general steps in this process:
 4. `Layout phase`. geometry phase where browsers calculate the position of every element
 5. `Painting phase`. The browser uses a render tree to paint or display pixels currently within your viewport
 6. `Repainting phase`: if we change the DOM tree, the browser must repaint the affected regions
+
+### Difference between `var`, `let`, `const`
+
+In JavaScript, `var`, `let`, and `const` are all used to declare variables, but they differ in their scope, hoisting, and reassignment capabilities. There are key differences:
+
+- Difference in scope:
+  - `var` is function or globally scoped, 
+  -  `let` and `const` are block-scoped
+- Difference in redeclaration and reassignment:
+  - `var` allows redeclaration and reassignment. 
+  - `let` allows reassignment but not redeclaration in the same scope. 
+  - `const` does not allow reassignment or redeclaration.
+- Difference in hoisting:
+  - Variables declared with `var` are hoisted and can be accessed before their declaration (with `undefined` value)
+  - Variables declared with `let` and `const` are also hoisted to the top of their block, but they should not be initialized. Accessing them before the declaration results in a `ReferenceError` (Temporal Dead Zone).
