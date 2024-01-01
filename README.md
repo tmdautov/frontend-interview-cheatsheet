@@ -156,3 +156,57 @@ In JavaScript, `var`, `let`, and `const` are all used to declare variables, but 
 - Difference in hoisting:
   - Variables declared with `var` are hoisted and can be accessed before their declaration (with `undefined` value)
   - Variables declared with `let` and `const` are also hoisted to the top of their block, but they should not be initialized. Accessing them before the declaration results in a `ReferenceError` (Temporal Dead Zone).
+
+## JS Problems
+
+### Implement debounce decorator
+
+Debounce decorator is a high-order function that delays the function execution by the given timer. You are required to implement it. 
+
+Debouncing is particularly useful in situations where you want to avoid the function being fired too frequently. A common use case is in search bars where you might want to wait for the user to finish typing before making an API call to fetch search results.
+
+```js
+const debounce = (fn, ms) => {
+   // ... your implementation
+}
+```
+
+**Example**
+
+```js
+const print = (n) => {
+  console.log(n);
+}
+
+const fn = debounce(print, 1000);
+fn(1); // ignore
+fn(2); // ignore
+fn(3); // prints 3
+```
+
+**Solution**
+
+```js
+const debounce = (fn, ms) => {
+  // timeoutID is used to store the ID of the setTimeout, allowing it to be cleared later.
+  let timeoutID = null;
+  
+  // Returns a new function that has debouncing functionality.
+  return (...args) => {
+    // Clears the current timeout, if any, to reset the wait time for the function call.
+    clearTimeout(timeoutID);    
+    
+    // Sets a new timeout. The original function fn will be called after the specified ms delay.
+    timeoutID = setTimeout(() => {
+      fn.call(this, ...args);
+    }, ms);      
+  }
+} 
+
+// Usage
+window.addEventListener('resize', debounce(() => {
+  // Will be printed once in a second
+  console.log('Resizing...');
+}, 1000));
+```
+
