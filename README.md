@@ -9,6 +9,11 @@
   * [What is the Event Loop?](#what-is-the-event-loop)
   * [What happens when you type URL in browser?](#what-happens-when-you-type-url-in-a-browser)
   * [How does a browser render a webpage?](#how-does-a-browser-render-a-webpage)
+  * [Difference between var, let, const](#difference-between-var-let-const)
+- [**JS problems**](#js-problems)
+  - [Implement debounce decorator](#implement-debounce-decorator)
+  - [Flatten the array](#flatten-the-array)
+  
 
 
 
@@ -163,7 +168,7 @@ In JavaScript, `var`, `let`, and `const` are all used to declare variables, but 
 
 Debounce decorator is a high-order function that delays the function execution by the given timer. You are required to implement it. 
 
-Debouncing is particularly useful in situations where you want to avoid the function being fired too frequently. A common use case is in search bars where you might want to wait for the user to finish typing before making an API call to fetch search results.
+Debouncing is particularly useful when you want to avoid the function being fired too frequently. A common use case is in search bars where you might want to wait for the user to finish typing before making an API call to fetch search results.
 
 ```js
 const debounce = (fn, ms) => {
@@ -210,3 +215,52 @@ window.addEventListener('resize', debounce(() => {
 }, 1000));
 ```
 
+### Flatten the array
+
+You are required to implement a custom `Array.prototype.flat` function. This function creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+
+**Example**
+
+```js
+// Input
+const arr1 = [0, 1, 2, [3, 4]];
+
+// Output
+const res = flat(arr, 1) 
+console.log(res) // [0, 1, 2, 3, 4]
+```
+
+**Recursive solution**
+
+General idea:  
+
+- Let's create a recursive function. 
+- Let's write a base case for recursion: if depth is equal to 0, then just return given array
+- Iterate over a given array and on every step of iteration check whether the current item is an array or no
+  - If it's an array, then flat it with the spread operator and call the recursive function with the current item
+  - If it's not an array, then just push it to `result` array
+- Return result
+
+**Code**
+
+```js
+function flat(arr, depth = 1) {
+  if (depth === 0) return arr;
+  const result = []
+  for (const item of arr) {
+    if (Array.isArray(item)) {
+      result.push(...flat(item, depth - 1)) 
+    } else {
+      result.push(item);
+    }
+  }
+  
+  return result;
+}
+
+const test = [1, 2, [3, 4, [5, 6], 7, 8], 9];
+console.log(flat(test, 2)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+- Time complexity: `O(N)`
+- Space complexity: `O(N)`
