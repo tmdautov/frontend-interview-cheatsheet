@@ -264,3 +264,39 @@ console.log(flat(test, 2)); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 - Time complexity: `O(N)`
 - Space complexity: `O(N)`
+
+
+
+### Implement forEach
+
+You are required to implement `Array.prototype.forEach` method, which calls the given callback function for each element in a given array.
+
+**Example:**
+
+```js
+const arr = [1, 2, 3];
+arr.forEach((item) => {
+  console.log(item);
+});
+// Output: 1, 2, 3
+```
+
+**Solution**
+
+Let's just iterate over a given array, and for every item, call the given callback function.
+
+```js
+Array.prototype.myForEach = function(cb) {
+  for (let i = 0; i < this.length; i++) {
+    cb(this[i], i, this);
+  }        
+};
+
+const arr = [1, 2, 3, 4, 5];
+arr.myForEach( (item) => {
+  console.log(item); // 1, 2, 3, 4, 5
+});
+```
+
+- Time complexity: `O(N)`
+- Space complexity: `O(1)`
