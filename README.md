@@ -298,5 +298,74 @@ arr.myForEach( (item) => {
 });
 ```
 
+Where:
+
+- `cb` is a callback function
+- `this[i]` is a current item of an array
+- `this` is a given array
+
+**Complexity:**
+
 - Time complexity: `O(N)`
 - Space complexity: `O(1)`
+
+
+
+### Implement Array.prototype.map
+
+You are required to implement a custom `Array.prototype.map` method, which is used to create a new array by applying a given callback function to every element of an original array. This method is particularly useful for transforming data.
+
+**Example:**
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+
+const squaredNums = numbers.map((number) => {
+  return number * number;
+});
+
+console.log(squaredNums); // Output: [1, 4, 9, 16, 25]
+
+```
+
+**Solution**
+
+- Start by extending the `Array.prototype` to add the `myMap` function. This makes `myMap` available to all instances of arrays in your code.
+- Define the `myMap` function. The `myMap` function should take a callback function (`cb`) as its argument. This callback function will be applied to each element of the array.
+- Inside `myMap`, initialize an empty array named `result`. This array will store the results of applying the callback function to each array element.
+- Use a `for` loop to iterate over each element of the array (`this`). The `this` keyword refers to the array on which `myMap` is called.
+  - In each iteration, apply the callback function to the current element, its index, and the entire array (`cb(this[i], i, this)`).
+- Push the result of the callback function into the `result` array.
+- After the loop completes, return the `result` array. This array contains the transformed elements.
+
+```js
+Array.prototype.myMap = function(cb) {
+  let result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(cb(this[i], i, this));
+  }
+  return result;
+}
+
+// Usage
+const arr = [1, 2, 3, 4, 5]
+const res = arr.myMap(item => {
+  return item*2;
+})
+
+console.log(res); // 1, 4, 6, 8, 10
+```
+
+Where:
+
+- `cb` is a callback function
+- `this[i]` is a current item of an array
+- `this` is a given array
+
+**Complexity:**
+
+- Time complexity: `O(N)`
+- Space complexity: `O(N)`
+
+
+
