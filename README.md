@@ -10,9 +10,17 @@
   * [What happens when you type URL in browser?](#what-happens-when-you-type-url-in-a-browser)
   * [How does a browser render a webpage?](#how-does-a-browser-render-a-webpage)
   * [Difference between var, let, const](#difference-between-var-let-const)
+  
 - [**JS problems**](#js-problems)
   - [Implement debounce decorator](#implement-debounce-decorator)
+  
   - [Flatten the array](#flatten-the-array)
+  
+  - [Implement forEach](#implement-foreach)
+  
+  - [Implement Array.prototype.map](#implement-arrayprototypemap)
+  
+    
   
 
 
@@ -366,6 +374,78 @@ Where:
 
 - Time complexity: `O(N)`
 - Space complexity: `O(N)`
+
+
+
+### Implement Spy decorator
+
+The `Decorator` is a design pattern that allows you to modify the existing functionality of a function by wrapping it in another function. 
+
+In the JavaScript testing framework Jest, a "spy" is typically used to monitor the behavior of a function: 
+
+```js
+spyOn(object, methodName)
+```
+
+You are required to implement Spy Decorator, which counts how many times the given function was called and with which arguments.
+
+**Example**
+
+```js
+const obj = {
+   counter: 1, 
+   add(num) {
+      this.counter += num
+   }
+}
+
+const spy = spyOn(obj, 'add')
+
+obj.add(1) // 2
+obj.add(2) // 4
+
+console.log(obj.counter) // 4
+console.log(spy.calls) // [ [1], [2] ]
+
+```
+
+**Solution**
+
+- Let's create a `spyOn` function which takes two arguments:
+  - `obj` - the object containing the method to be spied on
+  - `methodName` - a string representing the name of a method
+- Let's initialize an array `calls`, which is used to store the arguments with which the spied method is called.
+- Create `originMethod` which will be the reference to the original method from the object. This is necessary to maintain the original functionality of the method while adding the spy capability.
+- Ensure that the specified `methodName` corresponds to a function in the object. If not, an error is thrown. This is a safeguard to prevent incorrect usage of the `spyOn` function.
+- The original method on the object is then overridden with a new function. This new function does two things:
+  - It records the arguments passed to the method call in the `calls` array.
+  - It calls the original method using `apply` to ensure that the context (`this`) and arguments are passed correctly.
+- Finally, the `spyOn` function returns an object containing the `calls` array. This allows the user of the function to inspect the arguments with which the spied method has been called.
+
+**Code**
+
+```js
+function spyOn(obj, methodName) {
+  const calls = [];
+
+  const originMethod = obj[methodName];
+
+  if (typeof originMethod !== "function") {
+    throw new Error("not function");
+  }
+
+  obj[methodName] = function (...args) {
+    calls.push(args);
+    return originMethod.apply(this, args);
+  };
+
+  return {
+    calls,
+  };
+}
+```
+
+
 
 
 
