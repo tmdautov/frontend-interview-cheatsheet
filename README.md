@@ -13,11 +13,8 @@
   
 - [**JS problems**](#js-problems)
   - [Implement debounce decorator](#implement-debounce-decorator)
-  
   - [Flatten the array](#flatten-the-array)
-  
   - [Implement forEach](#implement-foreach)
-  
   - [Implement Array.prototype.map](#implement-arrayprototypemap)
   
     
@@ -447,5 +444,52 @@ function spyOn(obj, methodName) {
 
 
 
+### Implement Throttle decorator
 
+Throttling is a technique that ensures that the function does not execute more than once in a specified time period.
+
+This is useful for managing the performance of functions that could be triggered frequently. 
+
+You are required to implement `throttle(fn, delay)` decorator function.
+
+**Example:**
+
+```js
+function throttle(fn, delay) {
+  // Your implementation
+}
+
+const print = () => {
+  console.log("print");
+}
+
+const fn = throttle(print, 1000);
+
+// fn function will be called once in a second on window resize
+window.addEventListener("resize", fn);
+```
+
+**Solution**
+
+
+
+
+
+**Code**
+
+```js
+function throttle(fn, delay) {
+  let timer = null;
+
+  return function wrapper(...args) {
+    if (timer) return;
+
+    timer = setTimeout(() => {
+      fn(...args);
+      clearTimeout(timer);
+      timer = null;
+    }, delay);
+  };
+}
+```
 
