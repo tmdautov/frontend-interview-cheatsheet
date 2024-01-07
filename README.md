@@ -169,7 +169,7 @@ In JavaScript, `var`, `let`, and `const` are all used to declare variables, but 
 
 ## JS Problems
 
-### Implement debounce decorator
+### Implement debounce
 
 Debounce decorator is a high-order function that delays the function execution by the given timer. You are required to implement it. 
 
@@ -374,7 +374,7 @@ Where:
 
 
 
-### Implement Spy decorator
+### Implement spy decorator
 
 The `Decorator` is a design pattern that allows you to modify the existing functionality of a function by wrapping it in another function. 
 
@@ -444,7 +444,7 @@ function spyOn(obj, methodName) {
 
 
 
-### Implement Throttle decorator
+### Implement throttle
 
 Throttling is a technique that ensures that the function does not execute more than once in a specified time period.
 
@@ -471,25 +471,35 @@ window.addEventListener("resize", fn);
 
 **Solution**
 
-
-
-
-
-**Code**
-
 ```js
 function throttle(fn, delay) {
+  // Initialize a timer variable for managing the throttling
   let timer = null;
 
-  return function wrapper(...args) {
+  // Return a new function that encapsulates the throttling logic
+  return (...args) => {
+    // if timer is already running, then just skip fn call
     if (timer) return;
 
+    // Set a timer that delays the function execution
     timer = setTimeout(() => {
+      // Execute the original function with the provided arguments
       fn(...args);
+      
+      // Clear the timer after the function executes and reset it to null
       clearTimeout(timer);
       timer = null;
     }, delay);
   };
 }
+
+const print = () => {
+  console.log("print");
+}
+
+const fn = throttle(print, 1000);
+
+// fn function will be called once in a second on window resize
+window.addEventListener("resize", fn);
 ```
 
