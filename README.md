@@ -16,7 +16,13 @@
   - [Flatten the array](#flatten-the-array)
   - [Implement forEach](#implement-foreach)
   - [Implement Array.prototype.map](#implement-arrayprototypemap)
+  - [Implement spy decorator](#implement-spy-decorator)
+  - [Implement throttle](#implement-throttle)
+
+- [**HTML & CSS**](#)
   
+    
+    
     
   
 
@@ -501,5 +507,72 @@ const fn = throttle(print, 1000);
 
 // fn function will be called once in a second on window resize
 window.addEventListener("resize", fn);
+```
+
+
+
+## HTML & CSS
+
+### How to center a DIV
+
+How to center a DIV element horizontally and vertically? Name a different approaches. 
+
+Let's say that we have the following HTML structure:
+
+```html
+<div class="parent">
+  <div class="child">Centered Content</div>
+</div>
+```
+
+**Approach 1: Using Flexbox**
+
+If the parent container of your `div` is a flex container, you can center the `div` both horizontally and vertically with the following CSS:
+
+```css
+.parent {
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;     /* align vertical */
+}
+```
+
+**Approach 2: Using Grid**
+
+Similar to Flexbox, but with CSS Grid.
+
+`place-items` is a shorthand for `align-items` and `justify-items`
+
+```css
+.parent {
+  display: grid;
+  place-items: center;
+}
+```
+
+**Approach 3: Using Margin Auto**
+
+If you want to center a `div` horizontally, and it has a fixed width, you can use:
+
+```css
+.child {
+  margin: 0 auto; /* auto margin on left and right */
+  width: 50%;    /* or any fixed width */
+}
+```
+
+**Approach 4: Using Absolute Positioning**
+
+```css
+.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 ```
 
