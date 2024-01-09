@@ -12,17 +12,18 @@
   * [Difference between var, let, const](#difference-between-var-let-const)
   
 - [**JS problems**](#js-problems)
+  
   - [Implement debounce decorator](#implement-debounce-decorator)
   - [Flatten the array](#flatten-the-array)
   - [Implement forEach](#implement-foreach)
   - [Implement Array.prototype.map](#implement-arrayprototypemap)
   - [Implement spy decorator](#implement-spy-decorator)
   - [Implement throttle](#implement-throttle)
-
+  
 - [**HTML & CSS**](#)
   
     
-    
+  
     
   
 
@@ -513,7 +514,7 @@ window.addEventListener("resize", fn);
 
 ## HTML & CSS
 
-### How to center a DIV
+### How to center a DIV element
 
 How to center a DIV element horizontally and vertically? Name a different approaches. 
 
@@ -576,3 +577,27 @@ If you want to center a `div` horizontally, and it has a fixed width, you can us
 }
 ```
 
+### Difference between px, rem, em units
+
+There are two types of units in CSS:
+
+- Absolute units: px
+- Relative units: em, rem, %, vh
+
+Absolute units don't change, while relative units are flexible and change based on context.
+
+Let's dive into the most popular of them: `px`, ` em`, and `rem`.
+
+**Pixels (px)**
+
+"Pixels (PX) are a common unit of measurement in web design. They are fixed and useful for maintaining consistent sizing of certain elements. However, they can pose problems for responsive sites."
+
+**Relative EM (em)**
+
+The `em` unit is relative to the font size of its closest parent element.
+
+**Root EM (rem)**
+
+REM is similar to EM, but always relative to the root element (HTML tag). 
+
+Relative units like %, EM, and REM are better for responsive design and accessibility standards.
