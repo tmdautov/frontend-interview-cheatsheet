@@ -22,6 +22,9 @@
   
 - [**HTML & CSS**](#)
   
+  - [How to center a Div element](#how-to-center-a-div-element)
+  - [Difference between px, rem, em](#difference-between-px-rem-em-units)
+  
     
   
     
@@ -601,3 +604,23 @@ The `em` unit is relative to the font size of its closest parent element.
 REM is similar to EM, but always relative to the root element (HTML tag). 
 
 Relative units like %, EM, and REM are better for responsive design and accessibility standards.
+
+### Difference between `<script>`, `<script async>`, `<script defer>`
+
+In HTML, the `<script>` tag is used to embed a JavaScript script in your webpage. 
+
+You can modify the behavior of this tag by using the async and defer attributes.
+
+**`<script>`**
+
+Script without any attributes is fetched and executed immediately, blocking the parsing of the rest of the HTML document until the script is loaded and executed.
+
+**`<script async>`**
+
+The script will be fetched in parallel to the HTML parsing and executed as soon as it’s downloaded. This does not block the HTML parsing.
+
+It's often used for analytics or ad network-scripts.
+
+**`<script defer>`**
+
+The defer attribute fetches the script parallel to HTML parsing but delays its execution until after HTML parsing is complete. This ensures that the script and DOM work as intended.
