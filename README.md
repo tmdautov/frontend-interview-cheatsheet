@@ -624,3 +624,20 @@ It's often used for analytics or ad network-scripts.
 **`<script defer>`**
 
 The defer attribute fetches the script parallel to HTML parsing but delays its execution until after HTML parsing is complete. This ensures that the script and DOM work as intended.
+
+### Difference between reset.css and normalize.css
+
+`reset.css` and `normalize.css` are CSS files that improve cross-browser consistency in HTML element styling, but they use different approaches.
+
+**reset.css**
+
+`reset.css` removes all built-in browser styling. Standard HTML elements like headings, paragraphs, and lists will appear unstyled and look the same in every browser, providing a clean slate for further styling.
+
+This means you have to define all the styles for HTML elements explicitly. 
+
+**normalize.css**
+
+`normalize.css` makes built-in browser styling consistent across different browsers but does not remove them entirely. It preserves useful default styles rather than "unstyling" everything.
+
+
+
