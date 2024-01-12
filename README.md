@@ -639,5 +639,53 @@ This means you have to define all the styles for HTML elements explicitly.
 
 `normalize.css` makes built-in browser styling consistent across different browsers but does not remove them entirely. It preserves useful default styles rather than "unstyling" everything.
 
+### Describe z-index, and it's stacking context
 
+The z-index property controls the stacking order of elements on a web page. 
+
+An element with a greater stack order is always in front of an element with a lower stack order.
+
+The `z-index` only works in combination with the positioned elements (position: absolute, position, relative, position: fixed, or position: sticky) and flex items.
+
+Without a specified z-index, HTML elements are stacked based on their appearance order. Later elements appear on top of earlier ones if they overlap.
+
+A stacking context forms when an element has a non-static position and a non-auto z-index. This limits z-index effects to a specific part of the layout.
+
+**Example**
+
+```html
+<div class="container">
+  <div class="box box1">Box 1</div>
+  <div class="box box2">Box 2</div>
+  <div class="box box3">Box 3</div>
+</div>
+
+<style>
+.container {
+  position: relative; /* Establishes a stacking context */
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  color: white;
+  position: absolute; /* Needed for z-index to take effect */
+  left: 50px; /* Overlap the boxes */
+  top: 50px;
+}
+
+.box1 {
+  background-color: red;
+  z-index: 1; /* Higher z-index, appears on top */
+}
+
+.box2 {
+  background-color: blue;
+  z-index: 0; /* Lower z-index, appears behind box 1 */
+  left: 100px; /* Slight horizontal shift */
+  top: 100px;
+}
+</style>
+
+```
 
