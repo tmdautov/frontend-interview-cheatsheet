@@ -689,3 +689,17 @@ A stacking context forms when an element has a non-static position and a non-aut
 
 ```
 
+### Difference between cookie, sessionStorage and localStorage
+
+`Cookie`, `sessionStorage`, and `localStorage` are all methods used to store data on the client-side, but they have different characteristics and use cases:
+
+**Cookies**
+
+- Capasity
+- Accessibility
+- Expiration
+- Passed in request
+- Storage
+
+
+
