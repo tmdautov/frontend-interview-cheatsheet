@@ -689,17 +689,34 @@ A stacking context forms when an element has a non-static position and a non-aut
 
 ```
 
-### Difference between cookie, sessionStorage and localStorage
+### Difference between cookie, sessionStorage, and localStorage
 
-`Cookie`, `sessionStorage`, and `localStorage` are all methods used to store data on the client-side, but they have different characteristics and use cases:
+`Cookie`, `sessionStorage`, and `localStorage` are all methods used to store data on the client side, but they have different characteristics and use cases:
 
 **Cookies**
 
-- Capasity
-- Accessibility
-- Expiration
-- Passed in request
-- Storage
+- Capacity: 4KB
+- Accessibility: All windows
+- Expiration: Manually set
+- Passed in HTTP request: Yes
+- Storage: Browser and Server
+- Use cases: session management, personalization, tracking, and analytics
 
+**Session Storage**
 
+- Capacity: 5MB
+- Accessibility: Private for tab
+- Expiration: On tab close
+- Passed in HTTP request: No
+- Storage: Only browser
+- Use cases: similar to localStorage with a limitation of data expiration on tab close
+
+**LocalStorage**
+
+- Capacity: 5/10 MB, depending on the browser
+- Accessibility: All windows
+- Expiration: Never
+- Passed in HTTP request: No
+- Storage: Browser only
+- Use cases: save user preferences and settings, cache date to reduce server requests, shopping cart state
 
