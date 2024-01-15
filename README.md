@@ -720,3 +720,27 @@ A stacking context forms when an element has a non-static position and a non-aut
 - Storage: Browser only
 - Use cases: save user preferences and settings, cache date to reduce server requests, shopping cart state
 
+
+
+## Optimizations
+
+
+
+### Accessibility
+
+- Support keyboard navigation
+- Set focus on modals, popovers, alerts
+- Use correct HTML5 input types
+- Images should have alt descriptions
+- Use the `lang` attribute on the html element
+- Use only one h1 tag per page
+- Use a description with the title tag
+- Use `aria` landmarks where possible
+- Screen readers
+- Make sure that media is not autoplay
+- Provide transcriptions for video/audio
+- Add labels to form fields
+- Use text, not pictures of text
+- Web page size should not be larger than 500kb
+- Make a website for people with disabilities: larger font size, different color pallet
+- Dark/Light mode
