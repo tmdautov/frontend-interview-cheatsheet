@@ -724,16 +724,16 @@ A stacking context forms when an element has a non-static position and a non-aut
 
 ## Optimizations
 
-
-
 ### Accessibility
+
+What are some accessibility best practices?
 
 - Support keyboard navigation
 - Set focus on modals, popovers, alerts
 - Use correct HTML5 input types
-- Images should have alt descriptions
+- Images should have `alt` descriptions
 - Use the `lang` attribute on the html element
-- Use only one h1 tag per page
+- Use only one `h1` tag per page
 - Use a description with the title tag
 - Use `aria` landmarks where possible
 - Screen readers
@@ -744,3 +744,40 @@ A stacking context forms when an element has a non-static position and a non-aut
 - Web page size should not be larger than 500kb
 - Make a website for people with disabilities: larger font size, different color pallet
 - Dark/Light mode
+- Responsive design
+
+### Security
+
+What are some security best practices?
+
+- Adding CSRF Token is a critical security measure for protecting web applications from unauthorized data submissions from other websites
+
+- Install SSL Certificate
+
+- Keep all libraries and frameworks up-to-date to avoid vulnerabilities found in older versions.
+
+- Limit User Permissions and Access
+
+- Always validate user input to protect against common vulnerabilities like `SQL injection`, `cross-site scripting (XSS)`, and `command injection`. This should be done both on the client side for user experience and on the server side for security.
+
+- Define and enforce a strict `CORS` policy to prevent unauthorized domains from accessing your resources.
+
+- Use captcha
+
+- Utilize content security policies to prevent XSS attacks. Escape user input in HTML output to ensure that any input is rendered harmless.
+
+- Implement CSP headers to control the sources of various content types and mitigate XSS attacks.
+
+- Use `X-Frame-Options` or `Content Security Policy (CSP)` to prevent your website from being framed by malicious sites.
+
+- Use the Secure and HttpOnly flags for cookies to prevent access by client-side scripts and to ensure they're sent over HTTPS.
+
+- Set HTTP headers: `"Referrer-Policy": "no-referrer"`
+
+- Disable iframe embedding
+
+- Implement rate limiting and throttling to prevent brute-force attacks.
+
+- Regularly conduct security audits and penetration testing to identify and fix vulnerabilities.
+
+  
