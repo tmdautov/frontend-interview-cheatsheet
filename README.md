@@ -24,10 +24,22 @@
   
   - [How to center a Div element](#how-to-center-a-div-element)
   - [Difference between px, rem, em](#difference-between-px-rem-em-units)
+  - [Difference between `<script>`, `<script async>`, `<script defer>`](#difference-between-script-script-async-script-defer)
+  - [Difference between reset.css and normalize.css](#difference-between-resetcss-and-normalizecss)
+  - [Describe z-index, and it's stacking context](#describe-z-index-and-its-stacking-context)
+  - [Difference between cookie, sessionStorage, and localStorage](#difference-between-cookie-sessionstorage-and-localstorage)
+
+- [**Optimizations**](#)
+
+  - [Accessibility](#accessibility)
+  - [Security](#security)
+  - 
   
-    
   
-    
+  
+  
+  
+  
   
 
 
@@ -734,7 +746,7 @@ What are some accessibility best practices?
 - Images should have `alt` descriptions
 - Use the `lang` attribute on the html element
 - Use only one `h1` tag per page
-- Use a description with the title tag
+- Use a description with the `title` tag
 - Use `aria` landmarks where possible
 - Screen readers
 - Make sure that media is not autoplay
@@ -751,33 +763,51 @@ What are some accessibility best practices?
 What are some security best practices?
 
 - Adding CSRF Token is a critical security measure for protecting web applications from unauthorized data submissions from other websites
-
 - Install SSL Certificate
-
 - Keep all libraries and frameworks up-to-date to avoid vulnerabilities found in older versions.
-
 - Limit User Permissions and Access
-
 - Always validate user input to protect against common vulnerabilities like `SQL injection`, `cross-site scripting (XSS)`, and `command injection`. This should be done both on the client side for user experience and on the server side for security.
-
 - Define and enforce a strict `CORS` policy to prevent unauthorized domains from accessing your resources.
-
 - Use captcha
-
 - Utilize content security policies to prevent XSS attacks. Escape user input in HTML output to ensure that any input is rendered harmless.
-
 - Implement CSP headers to control the sources of various content types and mitigate XSS attacks.
-
 - Use `X-Frame-Options` or `Content Security Policy (CSP)` to prevent your website from being framed by malicious sites.
-
 - Use the Secure and HttpOnly flags for cookies to prevent access by client-side scripts and to ensure they're sent over HTTPS.
-
 - Set HTTP headers: `"Referrer-Policy": "no-referrer"`
-
 - Disable iframe embedding
-
 - Implement rate limiting and throttling to prevent brute-force attacks.
-
 - Regularly conduct security audits and penetration testing to identify and fix vulnerabilities.
 
-  
+
+
+### Performance
+
+- **Optimize Images**: Compress and resize images to reduce file size without sacrificing quality. Use modern formats like WebP for better compression.
+
+- **Minimize HTTP Requests**: Reduce the number of requests by combining files, using CSS sprites, and minimizing the use of scripts and plugins.
+
+- **Use a Content Delivery Network (CDN)**: CDNs distribute your content across multiple servers worldwide, reducing the distance between the server and the user, thus improving load times.
+
+- **Enable Caching**: Set appropriate caching policies to store frequently accessed resources on the user's device, reducing load times on subsequent visits.
+
+- **Minify and Combine Files**: Minify CSS, JavaScript, and HTML by removing unnecessary characters and spaces. Combine multiple files into one where possible to reduce the number of HTTP requests.
+
+- **Use Asynchronous Loading for CSS and JavaScript**: Load non-critical CSS and JavaScript files asynchronously to prevent them from blocking the rendering of the page.
+
+- **Optimize CSS and JavaScript**: Streamline and optimize code. Remove unused CSS and JavaScript to reduce file size.
+
+- **Implement Lazy Loading**: Load images and other resources only when they are needed (as the user scrolls down), which can significantly reduce initial load times.
+
+- **Optimize Web Fonts**: Limit the use of different font styles and weights, and use font-display settings to control how fonts are loaded.
+
+- **Improve Server Response Time**: Optimize your server, consider using a dedicated or virtual private server, and look into server-side caching.
+
+- **Use Compression**: Enable compression on your web server to reduce the size of your CSS, HTML, and JavaScript files.
+
+- **Optimize Database Queries**: For websites relying on a database, optimize queries and use indexing to speed up data retrieval.
+
+- **Audit with Tools**: Regularly use tools like Google PageSpeed Insights, Lighthouse, and GTmetrix to analyze and improve performance.
+
+- **Mobile Optimization**: Ensure your website is responsive and optimized for mobile devices, as more users are browsing on mobile.
+
+- **Reduce Redirects**: Each redirect triggers an additional HTTP request-response cycle, so minimize them to improve load times.
