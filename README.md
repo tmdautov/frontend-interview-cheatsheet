@@ -12,13 +12,17 @@
   * [Difference between var, let, const](#difference-between-var-let-const)
   
 - [**JS problems**](#js-problems)
-  
   - [Implement debounce decorator](#implement-debounce-decorator)
   - [Flatten the array](#flatten-the-array)
   - [Implement forEach](#implement-foreach)
   - [Implement Array.prototype.map](#implement-arrayprototypemap)
   - [Implement spy decorator](#implement-spy-decorator)
   - [Implement throttle](#implement-throttle)
+
+
+- [**JS components**](#js-components)
+	
+  - [Implement autocomplete](#implement-autocomplete)
   
 - [**HTML & CSS**](#)
   
@@ -33,7 +37,12 @@
 
   - [Accessibility](#accessibility)
   - [Security](#security)
-  - 
+  - [Performance](#performance)
+  - [SEO](#seo)
+  
+  
+  
+  
   
   
   
@@ -527,6 +536,78 @@ window.addEventListener("resize", fn);
 
 
 
+## JS Components
+
+
+
+### Implement Autocomplete
+
+You are required to Design & Implement an Autocomplete component. 
+
+The autocomplete is a normal text input enhanced by a panel of suggested options.
+
+**Requirements**
+
+- Show suggestions when the user starts writing
+- By clicking on an option put it into the input
+- By clicking on the outside of the suggestions box, hide it
+- Add a debounce decorator to improve performance
+
+
+
+**Solution**
+
+```html
+<div class="autocomplete">
+  <input id="search" type="search" autocomplete="off">
+  <ul></ul>
+</div>
+```
+
+
+
+```js
+const input = document.querySelector("#autocomplete input");
+const ul = document.querySelector("#autocomplete ul");
+
+const data = ["apple", "banana", "cherry", "date"];
+
+function showSuggestions(arr) {
+  // Reduce direct DOM manipulation
+  const listHTML = arr.map((item) => `<li class="list-item">${item}</li>`).join("");
+  ul.innerHTML = listHTML;
+  ul.style.display = listHTML ? "block" : "none";
+}
+
+function onItemClick(evt) {
+  // Directly handle the click event on UL instead of individual LI
+  if (evt.target.tagName === 'LI') {
+    input.value = evt.target.textContent;
+    ul.innerHTML = "";
+  }
+}
+
+input.addEventListener("input", (evt) => {
+  const query = evt.target.value.toLowerCase();
+  const suggestions = query 
+    ? data.filter(item => item.toLowerCase().startsWith(query))
+    : [];
+  showSuggestions(suggestions);
+});
+
+ul.addEventListener("click", onItemClick);
+
+document.addEventListener("click", (event) => {
+  if (!event.target.closest("#autocomplete")) {
+    ul.innerHTML = "";
+  }
+});
+```
+
+
+
+
+
 ## HTML & CSS
 
 ### How to center a DIV element
@@ -738,7 +819,7 @@ A stacking context forms when an element has a non-static position and a non-aut
 
 ### Accessibility
 
-What are some accessibility best practices?
+Accessibility best practices:
 
 - Support keyboard navigation
 - Set focus on modals, popovers, alerts
@@ -760,7 +841,7 @@ What are some accessibility best practices?
 
 ### Security
 
-What are some security best practices?
+Security best practices:
 
 - Adding CSRF Token is a critical security measure for protecting web applications from unauthorized data submissions from other websites
 - Install SSL Certificate
@@ -811,3 +892,26 @@ What are some security best practices?
 - **Mobile Optimization**: Ensure your website is responsive and optimized for mobile devices, as more users are browsing on mobile.
 
 - **Reduce Redirects**: Each redirect triggers an additional HTTP request-response cycle, so minimize them to improve load times.
+
+### SEO
+
+SEO (Search Engine Optimization) is a critical aspect of web development, as it helps to ensure that a website is accessible and ranks well on search engines like Google. Here's a list of best practices:
+
+1. **Responsive Design**: Ensure your website is mobile-friendly. Google prioritizes mobile-friendly websites in its search rankings.
+2. **Page Speed Optimization**: Faster loading times improve user experience and are favored by search engines. Optimize images, minify CSS and JavaScript, and leverage browser caching.
+3. **Use of HTTPS**: Secure your website with an SSL certificate. Google gives a ranking boost to secure websites.
+4. **Optimized Content**: Create high-quality, original content that includes relevant keywords. Avoid keyword stuffing and ensure that your content provides value to the user.
+5. **Meta Tags and Descriptions**: Use descriptive and keyword-rich meta tags and descriptions. They help search engines understand what your page is about.
+6. **URL Structure**: Use SEO-friendly URLs that are short, descriptive, and include keywords.
+7. **Alt Text for Images**: Provide descriptive alt text for images. This helps search engines understand the context of the images and makes your site more accessible.
+8. **Internal Linking**: Use internal links to guide users and search engines to relevant content on your site.
+9. **External Linking**: Link to authoritative and relevant external sites. This can lend credibility to your content.
+10. **Schema Markup**: Implement schema markup to provide search engines with more information about your content.
+11. **Sitemap and Robots.txt**: Use a sitemap to help search engines index your site and a robots.txt file to control what they index.
+12. **Social Media Integration**: Integrate social media sharing tools. Social signals are not a direct ranking factor but can help increase visibility and traffic.
+13. **Regular Content Updates**: Regularly update your website with fresh content. This signals to search engines that your site is active and relevant.
+14. **User Experience (UX)**: Focus on creating a great user experience, including easy navigation and engaging design.
+15. **Monitoring and Analytics**: Use tools like Google Analytics and Google Search Console to monitor traffic, identify issues, and understand user behavior on your site.
+16. **Local SEO**: If your business is location-based, optimize for local search with local keywords, Google My Business listings, and local citations.
+17. **Voice Search Optimization**: Optimize for voice search by including conversational keywords and providing clear, concise answers to common questions.
+18. **Accessibility**: Ensure your site is accessible to all users, including those with disabilities. This can involve using proper contrast, keyboard navigation, and screen reader-friendly design.
