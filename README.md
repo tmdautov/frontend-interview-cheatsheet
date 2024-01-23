@@ -542,20 +542,11 @@ window.addEventListener("resize", fn);
 
 ### Implement Autocomplete
 
-You are required to Design & Implement an Autocomplete component. 
+You are required to Implement an Autocomplete component. 
 
 The autocomplete is a normal text input enhanced by a panel of suggested options.
 
-**Requirements**
-
-- Show suggestions when the user starts writing
-- By clicking on an option put it into the input
-- By clicking on the outside of the suggestions box, hide it
-- Add a debounce decorator to improve performance
-
-
-
-**Solution**
+This is initial HTML structure:
 
 ```html
 <div class="autocomplete">
@@ -564,22 +555,32 @@ The autocomplete is a normal text input enhanced by a panel of suggested options
 </div>
 ```
 
+**Requirements**
 
+- Show suggestions when the user starts writing
+- By clicking on an option put it into the input
+- By clicking on the outside of the suggestions box, hide it
+
+**Solution**
 
 ```js
+// Select input and unordered list elements from the DOM
 const input = document.querySelector("#autocomplete input");
 const ul = document.querySelector("#autocomplete ul");
 
+// Sample data array for autocomplete suggestions
 const data = ["apple", "banana", "cherry", "date"];
 
-function showSuggestions(arr) {
+// Function to show suggestions based on the input
+const showSuggestions = (arr) => {
   // Reduce direct DOM manipulation
   const listHTML = arr.map((item) => `<li class="list-item">${item}</li>`).join("");
   ul.innerHTML = listHTML;
   ul.style.display = listHTML ? "block" : "none";
 }
 
-function onItemClick(evt) {
+// Function to handle click events on list items
+const onItemClick = (evt) => {
   // Directly handle the click event on UL instead of individual LI
   if (evt.target.tagName === 'LI') {
     input.value = evt.target.textContent;
@@ -587,6 +588,7 @@ function onItemClick(evt) {
   }
 }
 
+// Event listener for input changes
 input.addEventListener("input", (evt) => {
   const query = evt.target.value.toLowerCase();
   const suggestions = query 
@@ -595,8 +597,10 @@ input.addEventListener("input", (evt) => {
   showSuggestions(suggestions);
 });
 
+// Event listener for click events on the unordered list
 ul.addEventListener("click", onItemClick);
 
+// Event listener to close the suggestion list when clicking outside the autocomplete area
 document.addEventListener("click", (event) => {
   if (!event.target.closest("#autocomplete")) {
     ul.innerHTML = "";
