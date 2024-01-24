@@ -610,6 +610,97 @@ document.addEventListener("click", (event) => {
 
 
 
+### Implement Tooltip
+
+You are required to Implement an Tooltip component. 
+
+
+
+**Solution**
+
+```html
+<style>
+[data-tooltip] {
+  text-decoration: underline;
+  cursor: help;
+}
+
+[role="tooltip"] {
+  opacity: 0;
+  position: absolute;
+  width: auto;
+  height: auto;
+}
+
+[role="tooltip"].active {
+  opacity: 1;
+  transform: translateX(-50%); /* Center tooltip according parent element*/
+}
+</style>
+
+<div>
+  Many species of gecko have
+  <span data-tooltip="Hi there!">adhesive</span> toe pads which enable
+  them to climb walls and even windows.
+</div>
+```
+
+
+
+```js
+const tooltips = document.querySelectorAll("[data-tooltip]");
+const DELAY = 300;
+let tooltipTimer = null;
+
+const createTooltip = (target) => {
+  let tooltip = document.createElement("div");
+
+  tooltip.setAttribute("role", "tooltip");
+  tooltip.setAttribute("inert", true);
+  tooltip.textContent = target.dataset.tooltip;
+
+  target.appendChild(tooltip);
+};
+
+const displayTooltip = (evt) => {
+  const target = evt.target;
+  const tooltip = target.querySelector("[role=tooltip]");
+  
+  // Get the target element's position and dimensions
+  const { x, y, width, height } = target.getBoundingClientRect();
+  
+  // Set the tooltip position to be centered above the target element
+  tooltip.style.left = `${Math.floor(x + width / 2)}px`;
+  tooltip.style.top = `${Math.floor(y + height)}px`;
+
+  tooltip.classList.add("active");
+};
+
+const hideTooltip = (e) => {
+  const tooltip = e.target.querySelector("[role=tooltip]");
+  tooltip.classList.remove("active");
+};
+
+tooltips.forEach((target) => {
+  createTooltip(target);
+
+  target.addEventListener("mouseenter", (e) => {
+    clearTimeout(tooltipTimer);
+
+    tooltipTimer = setTimeout(() => {
+      displayTooltip(e);
+    }, DELAY);
+  });
+
+  target.addEventListener("mouseleave", (e) => {
+    clearTimeout(tooltipTimer);
+    hideTooltip(e);
+  });
+});
+```
+
+
+
 
 
 ## HTML & CSS
