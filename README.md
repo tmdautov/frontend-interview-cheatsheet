@@ -614,7 +614,23 @@ document.addEventListener("click", (event) => {
 
 You are required to Implement an Tooltip component. 
 
+A `tooltip` is a floating, non-actionable informative label used to explain a UI element or feature. It's appears when users hover over, focus on, or tap an element.
 
+This is initial structure of HTML:
+
+```html
+<div data-tooltip="Name description">
+  Hi, my name is John
+</div>
+```
+
+**Requirements:**
+
+- Show tooltip on hover on element with attribute `data-tooltip`
+- Maintain multiple tooltips per page
+- Take content of the toolitp from `data-tooltip` attribute. It could be HTML
+- Optimisations
+	- Show tooltip with some delay, e.g. 500ms
 
 **Solution**
 
@@ -676,8 +692,8 @@ const displayTooltip = (evt) => {
   tooltip.classList.add("active");
 };
 
-const hideTooltip = (e) => {
-  const tooltip = e.target.querySelector("[role=tooltip]");
+const hideTooltip = (evt) => {
+  const tooltip = evt.target.querySelector("[role=tooltip]");
   tooltip.classList.remove("active");
 };
 
