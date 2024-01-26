@@ -717,6 +717,78 @@ tooltips.forEach((target) => {
 
 
 
+### Implement Star Rating component
+
+
+
+```
+<div class="star-rating">
+  <span class="star" data-value="1">&#9733;</span>
+  <span class="star" data-value="2">&#9733;</span>
+  <span class="star" data-value="3">&#9733;</span>
+  <span class="star" data-value="4">&#9733;</span>
+  <span class="star" data-value="5">&#9733;</span>
+</div>
+```
+
+
+
+```js
+import "./styles.css";
+
+const stars = document.querySelectorAll(".star");
+let selectedValue = 0;
+
+function handleStarClick(event) {
+  selectedValue = event.target.getAttribute("data-value");
+
+  // Remove "active" class from all stars
+  stars.forEach((star) => {
+    star.classList.remove("active");
+  });
+
+  // Add "active" class to selected stars and all previous stars
+  for (let i = 0; i < selectedValue; i++) {
+    stars[i].classList.add("active");
+  }
+}
+
+function handleStarHover(event) {
+  const hoveredValue = event.target.getAttribute("data-value");
+
+  // Add "active" class to hovered stars and all previous stars
+  for (let i = 0; i < hoveredValue; i++) {
+    stars[i].classList.add("active");
+  }
+
+  // Remove "active" class from all stars after the hovered stars
+  for (let i = hoveredValue; i < stars.length; i++) {
+    stars[i].classList.remove("active");
+  }
+}
+
+function handleMouseLeave() {
+  // Remove "active" class from all stars after the last selected star
+  for (let i = selectedValue; i < stars.length; i++) {
+    stars[i].classList.remove("active");
+  }
+
+  // Add "active" class to selected stars and all previous stars
+  for (let i = 0; i < selectedValue; i++) {
+    stars[i].classList.add("active");
+  }
+}
+
+// Add click and mouseenter event listeners to each star
+stars.forEach((star) => {
+  star.addEventListener("click", handleStarClick);
+  star.addEventListener("mouseenter", handleStarHover);
+  star.addEventListener("mouseleave", handleMouseLeave);
+});
+```
+
+
+
 
 
 ## HTML & CSS
