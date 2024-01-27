@@ -719,9 +719,13 @@ tooltips.forEach((target) => {
 
 ### Implement Star Rating component
 
+You are required to Implement a Star rating component. 
 
 
-```
+
+**Solution**
+
+```html
 <div class="star-rating">
   <span class="star" data-value="1">&#9733;</span>
   <span class="star" data-value="2">&#9733;</span>
